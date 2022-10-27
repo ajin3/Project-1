@@ -4,8 +4,8 @@ import { UpdateHl7Dto } from './dto/update-hl7.dto';
 
 @Injectable()
 export class Hl7Service {
-  create(createHl7Dto: CreateHl7Dto) {
-    return 'This action adds a new hl7';
+  create() {
+    return 'This action adds a new HL7';
   }
 
   findAll() {
