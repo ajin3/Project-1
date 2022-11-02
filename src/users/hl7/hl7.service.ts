@@ -1,11 +1,14 @@
-import { Injectable } from '@nestjs/common';
-import { CreateHl7Dto } from './dto/create-hl7.dto';
+import { Body, Injectable } from '@nestjs/common';
+import { text } from 'stream/consumers';
 import { UpdateHl7Dto } from './dto/update-hl7.dto';
+import { PlainBody } from './post.decorator';
 
 @Injectable()
 export class Hl7Service {
-  create() {
-    return 'This action adds a new HL7';
+
+  create(text: string) {
+    console.log(text);
+    return `${text} `;
   }
 
   findAll() {
