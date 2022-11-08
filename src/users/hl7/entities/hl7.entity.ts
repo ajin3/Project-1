@@ -1,1 +1,1 @@
-export class Hl7 {}
+//export class Hl7 {}

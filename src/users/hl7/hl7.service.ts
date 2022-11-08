@@ -1,15 +1,31 @@
-import { Body, Injectable } from '@nestjs/common';
-import { text } from 'stream/consumers';
+import { Injectable } from '@nestjs/common';
 import { UpdateHl7Dto } from './dto/update-hl7.dto';
-import { PlainBody } from './post.decorator';
+import * as HL7 from "hl7-standard";
 
 @Injectable()
 export class Hl7Service {
-
   create(text: string) {
-    console.log(text);
-    return `${text} `;
+
+    const rawData = `${text}`;
+
+    const hl7 = new HL7(rawData);
+
+    hl7.transform();
+
+    const pidSegment = hl7.getSegment("PID");
+
+    hl7.deleteSegment(pidSegment);
+
+    const output = hl7.build();
+
+    console.log(output);
+
+    console.log(pidSegment);
+
+    return `${output}`;
+
   }
+
 
   findAll() {
     return `This action returns all hl7`;
